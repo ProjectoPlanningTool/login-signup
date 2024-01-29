@@ -1,10 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import LoginSignup from './LoginSignup';
+import logo from "./logo.svg";
+import "./App.css";
+import LoginSignup from "./LoginSignup";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-  <LoginSignup/>
+    <>
+      <Routes>
+        <Route path="/" element={<LoginSignup />} />
+        <Route path="*" element={<>Not Accessible Page</>} />
+      </Routes>
+    </>
   );
 }
 
