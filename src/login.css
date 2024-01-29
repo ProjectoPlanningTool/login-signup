@@ -1,0 +1,53 @@
+.left-column {
+    background-image: linear-gradient(to right, #ffd54f, #d500f9);
+  }
+  
+  .card {
+    background-color: #d70af1;
+  }
+  
+  .right-column {
+    border-top-left-radius: 55px;
+    border-bottom-left-radius: 55px;
+    background-color: white;
+  }
+  
+  .social-btn {
+    border: 1px solid #4b4b4b;
+    color: #090909;
+  }
+  
+  .social-btn svg {
+    fill: #d500f9;
+  }
+  
+  .hr-width {
+    width: 25px;
+  }
+  
+  .form-control {
+    border: none;
+    border-radius: unset;
+    border-bottom: 1px solid #4b4b4b;
+  }
+  
+  .form-control:focus {
+    background-color: none;
+    border-color: unset;
+    outline: 0;
+    box-shadow: unset;
+  }
+  
+  .submit-btn {
+    background-image: linear-gradient(to right, #ffd54f, #d500f9);
+    border: unset;
+  }
+  
+  @media (max-width: 1200px) {
+    .right-column {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      background-color: white;
+    }
+  }
+  
