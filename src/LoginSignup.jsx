@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import "./login.css";
-import { useLocation } from "react-router-dom";
 
 const LoginSignup = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +9,6 @@ const LoginSignup = () => {
   const [full_name, setFullname] = useState("");
   const [last_name, setLastname] = useState("");
   const [action, setAction] = useState("Log in");
-
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -31,18 +29,22 @@ const LoginSignup = () => {
   const handleApi = async (e) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/login`,
+        `${process.env.REACT_APP_BASE_URL}/auth/login`,
         {
           email: email,
           password: password,
         }
       );
-      if (response.status) {
+      if (response.status === 200) {
         const searchValue = new URLSearchParams(window.location.search).get(
           "redirectUrl"
         );
         if (searchValue) {
-          window.location.href = searchValue;
+          const url = new URL(searchValue);
+          const searchParam = new URLSearchParams(url.search);
+          searchParam.set("token",response?.data?.data?.token);
+          url.search = searchParam
+          window.location.href = url;
         }
       }
 
@@ -53,10 +55,9 @@ const LoginSignup = () => {
   };
 
   const handleSignup = async () => {
-    console.log("full_name", full_name);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/signup`,
+        `${process.env.REACT_APP_BASE_URL}/auth/signup`,
         {
           firstName: full_name,
           lastName: last_name,
@@ -64,7 +65,9 @@ const LoginSignup = () => {
           password: password,
         }
       );
-      console.log("🚀 ~ handleApi ~ response:", response);
+      if(response.status === 200){
+        setAction("Log in")
+      }
     } catch (err) {
       console.log("err", err);
     }
