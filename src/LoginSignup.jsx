@@ -29,7 +29,7 @@ const LoginSignup = () => {
   const handleApi = async (e) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/auth/login`,
+        `${process.env.REACT_APP_BASE_URL}/login`,
         {
           email: email,
           password: password,
@@ -57,7 +57,7 @@ const LoginSignup = () => {
   const handleSignup = async () => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/auth/signup`,
+        `${process.env.REACT_APP_BASE_URL}/signup`,
         {
           firstName: full_name,
           lastName: last_name,
